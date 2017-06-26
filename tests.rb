@@ -17,19 +17,25 @@ describe CompilateurLogo do
     end
   end
 
-  it "ignore les lignes vides" do
-    @compilateur.compile("\nav 1\n").must_equal("av(1);")
-  end
-
   it "peut enchainer les instructions" do
     @compilateur.compile("av 1\nav 2").must_equal(
       "av(1);\nav(2);"
     )
   end
 
+  it "ignore les lignes vides" do
+    @compilateur.compile("\nav 1\n").must_equal("av(1);")
+  end
+
   it "peut apprendre des mots" do
     @compilateur.compile("pour x\nav 10\nfin\nx").must_equal(
       "x();\n}\nvoid x(){\nav(10);"
+    )
+  end
+
+  it "connait les arguments" do
+    @compilateur.compile("pour f :x\nav :x\nfin\nf 12").must_equal(
+      "f(12);\n}\nvoid f(Object x){\nav(x);"
     )
   end
 

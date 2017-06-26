@@ -1,0 +1,37 @@
+pour carre :n
+  av :n
+  td 90
+  av :n
+  td 90
+  av :n
+  td 90
+  av :n
+  td 90
+fin
+
+pour carres
+  carre 10
+  carre 20
+  carre 30
+  carre 40
+  av 60
+  td 30
+fin
+
+pour plein_de_carres
+  carres
+  carres
+  carres
+  carres
+  carres
+  carres
+  carres
+  carres
+  carres
+  carres
+  carres
+  carres
+  carres
+fin
+
+plein_de_carres

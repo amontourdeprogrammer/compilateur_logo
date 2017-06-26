@@ -15,17 +15,22 @@ class CompilateurLogo
       if mot.nil? then
       elsif mot == "pour" then
         nom = mots_logo[1]
+        arguments = mots_logo[2..-1] || []
+
+        arglist = arguments.map{|arg| "Object #{arg.gsub(":","")}"}.join(",")
 
         code_procedures << "}"
-        code_procedures << "void #{nom}(){"
+        code_procedures << "void #{nom}(#{arglist}){"
 
         code_cible = code_procedures
       elsif mot == "fin" then
         code_cible = code_draw
       else
-        pas = mots_logo[1]
+        arguments = mots_logo[1..-1] || []
 
-        code_cible << "#{mot}(#{pas});"
+        arglist = arguments.map{|arg| "#{arg.gsub(":","")}"}.join(",")
+
+        code_cible << "#{mot}(#{arglist});"
       end
     }
 
